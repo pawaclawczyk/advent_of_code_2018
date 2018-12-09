@@ -6,10 +6,12 @@ iex -S mix
 iex> AoC.Day[number of the day].Solution.run()
 ```
 
-## Day 1: Chornal Calibration
+## Day 1: Chronal Calibration
 
 [Puzzle description](https://adventofcode.com/2018/day/1)
+
 [Input data](data/1/input)
+
 [Solution code](lib/aoc/day_1/solution.ex)
 
 Input file contains lines with an integer representing consecutive frequency changes.
