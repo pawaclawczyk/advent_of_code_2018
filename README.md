@@ -29,4 +29,25 @@ and the current frequency. In each step new frequency is computed and compared w
 
 Hint: The initial frequency is also a reached frequency.
 
+## Day 2: Inventory Management System
+
+[Puzzle description](https://adventofcode.com/2018/day/2)
+
+[Input data](data/2/input)
+
+[Solution code](lib/aoc/day_2/solution.ex)
+
+Input file contains lines with box IDs.
+
+In the first part we must produce checksum for the list of box IDs.
+The checksum is a product of two numbers, number of IDs containing the same letter twice
+and number of IDs containing the same letter three times.
+
+To complete a solution for the puzzle we need a helper function checking
+whether an ID has two (or three) same letters.
+The main solution is to traverse the list and count each ID having a duplicate letter and having a letter repeated three times.
+
+Let's start with helper function for checking if any letter in ID appears exactly two (and three) times.
+We need to split the string into letters, then group the letters and count each group. If we find a group of two (three) then will return `true`.
+It's worth to note that we look for *exactly* two (three) same letters, it means we must analyse every letter in ID and cannot return earlier.
 
