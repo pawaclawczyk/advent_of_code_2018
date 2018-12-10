@@ -60,3 +60,32 @@ and all remaining. Once it finds two IDs with distance equal to one then it retu
 In an imperative language for this purpose we would use a nested for loops.
 However, we will use two recursive functions, one for the outer iteration and second for the inner iteration and computing distance.
 As the expected result is only the common part of found IDs, function similar to the one computing distance will do that for us.
+
+## Day 3: No Matter How You Slice It
+
+[Puzzle description](https://adventofcode.com/2018/day/3)
+
+Todays puzzle may seem quiet difficult.
+The input is a list of rectangle surface.
+The challenge is to compute the area of overlapping surfaces.
+
+So far I've came up with two algorithms.
+
+The first algorithm converts a rectangle definitions into functions returning if given point is inside a shape.
+In the second step each point on the available surface is checked by every function, then points marked by more than 1 rectangle are counted.
+In order to cover the whole area we must find the lowest most right point used.
+
+The second algorithm will iterate over rectangle definitions, convert it to list of points then increment a value in map where the point is a key.
+Next it counts the keys with value greater than 1.
+
+Which one is better? Let's analyse memory and computation complexity.
+
+Given N rectangle definitions and the area consiting of M points.
+
+Algorithm 1:
+ - memory contains N functions and M points
+ - it iterates over N rectangle definition to produce functions, then iterate over M points, because thes two operation are done in a sequance we have complecity of O(N + M)
+ 
+Algorithm 2:
+ - memory contains a map of M points
+ - the worst case, quiet impossible, is that each rectangle is defined as a full available area - it gives the complexity of N * M as we increment for every point covered by every rectangle
