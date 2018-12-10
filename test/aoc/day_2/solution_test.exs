@@ -33,4 +33,42 @@ defmodule AoC.Day2.SolutionTest do
 
     assert 12 === checksum(ids)
   end
+
+  test "distance of two strings" do
+    assert 0 === distance("same", "same")
+    assert 4 === distance("", "abcd")
+    assert 4 === distance("abcd", "")
+    assert 2 === distance("abcde", "axcye")
+    assert 1 === distance("fghij", "fguij")
+  end
+
+  test "search for ids with difference equal to one" do
+    assert :not_found ===
+             search_for_ids_with_difference_one([
+               "none",
+               "of",
+               "these",
+               "is",
+               "different",
+               "by",
+               "one",
+               "character"
+             ])
+
+    assert {"fghij", "fguij"} ===
+             search_for_ids_with_difference_one([
+               "abcde",
+               "fghij",
+               "klmno",
+               "pqrst",
+               "fguij",
+               "axcye",
+               "wvxyz"
+             ])
+  end
+
+  test "get common substring" do
+    assert "ace" === common_substring("abcde", "axcye")
+    assert "fgij" === common_substring("fghij", "fguij")
+  end
 end

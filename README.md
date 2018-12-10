@@ -51,3 +51,12 @@ Let's start with helper function for checking if any letter in ID appears exactl
 We need to split the string into letters, then group the letters and count each group. If we find a group of two (three) then will return `true`.
 It's worth to note that we look for *exactly* two (three) same letters, it means we must analyse every letter in ID and cannot return earlier.
 
+In the second part of the puzzle we must find IDs that differ by exactly one character.
+The difference must be position-wise, it means that ID `abcd` and `bcda` have four different characters.
+To compute the number of different characters we build a distance function.
+The function is recursively walking over two strings character by character increasing distance counter by one when first characters are different.
+In next step program should iterate over IDs and compute distance between current element
+and all remaining. Once it finds two IDs with distance equal to one then it returns.
+In an imperative language for this purpose we would use a nested for loops.
+However, we will use two recursive functions, one for the outer iteration and second for the inner iteration and computing distance.
+As the expected result is only the common part of found IDs, function similar to the one computing distance will do that for us.
