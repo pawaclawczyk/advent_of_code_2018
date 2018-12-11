@@ -69,23 +69,9 @@ Todays puzzle may seem quiet difficult.
 The input is a list of rectangle surface.
 The challenge is to compute the area of overlapping surfaces.
 
-So far I've came up with two algorithms.
+The solution will be simple.
+An rectange surface is defined by position of left-top square and width and height.
+This form can be converted into list of position of every square in such rectangle.
+All we have to do is to count how many times each square position appears
+then count theses positions which appear more than once.
 
-The first algorithm converts a rectangle definitions into functions returning if given point is inside a shape.
-In the second step each point on the available surface is checked by every function, then points marked by more than 1 rectangle are counted.
-In order to cover the whole area we must find the lowest most right point used.
-
-The second algorithm will iterate over rectangle definitions, convert it to list of points then increment a value in map where the point is a key.
-Next it counts the keys with value greater than 1.
-
-Which one is better? Let's analyse memory and computation complexity.
-
-Given N rectangle definitions and the area consiting of M points.
-
-Algorithm 1:
- - memory contains N functions and M points
- - it iterates over N rectangle definition to produce functions, then iterate over M points, because thes two operation are done in a sequance we have complecity of O(N + M)
- 
-Algorithm 2:
- - memory contains a map of M points
- - the worst case, quiet impossible, is that each rectangle is defined as a full available area - it gives the complexity of N * M as we increment for every point covered by every rectangle
