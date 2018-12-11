@@ -75,3 +75,9 @@ This form can be converted into list of position of every square in such rectang
 All we have to do is to count how many times each square position appears
 then count theses positions which appear more than once.
 
+In the second part we must find the rectangle that is not overllaping with any other.
+I found no better solution than comparing each pair of rectangles in the input.
+Instead of loops I use recursive iteration and return as soon as first overllaping rectangle is found.
+An interesting part is how overlapping is verified - if any of the corners of one rectangle is inside of the other
+then they are overlapping. We must check this relation in both directions.
+
