@@ -65,6 +65,10 @@ As the expected result is only the common part of found IDs, function similar to
 
 [Puzzle description](https://adventofcode.com/2018/day/3)
 
+[Input data](data/3/input)
+
+[Solution code](lib/aoc/day_3/solution.ex)
+
 Todays puzzle may seem quiet difficult.
 The input is a list of rectangle surface.
 The challenge is to compute the area of overlapping surfaces.
@@ -80,4 +84,3 @@ I found no better solution than comparing each pair of rectangles in the input.
 Instead of loops I use recursive iteration and return as soon as first overllaping rectangle is found.
 An interesting part is how overlapping is verified - if any of the corners of one rectangle is inside of the other
 then they are overlapping. We must check this relation in both directions.
-
