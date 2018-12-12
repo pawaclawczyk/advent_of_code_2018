@@ -84,3 +84,43 @@ I found no better solution than comparing each pair of rectangles in the input.
 Instead of loops I use recursive iteration and return as soon as first overllaping rectangle is found.
 An interesting part is how overlapping is verified - if any of the corners of one rectangle is inside of the other
 then they are overlapping. We must check this relation in both directions.
+
+## Day 4: Repose Record
+
+[Puzzle description](https://adventofcode.com/2018/day/4)
+
+[Input data](data/4/input)
+
+[Solution code](lib/aoc/day_4/solution.ex)
+
+Todays challange is about computing few things aout of given log.
+In log we can find three types of information, when new guard begins shift, when guard falls asleep
+and when guard wakes up.
+Each record has data and time information.
+Unfortunatelly records about waking up and falling asleep do not contain direct information about the guard.
+We must infer it from the earlier records.
+One more difficulty is that log is not sorted.
+
+That's how the input looks like. Now find out what value do we need to compute.
+In the first strategy we must find guard that has the most minutes asleep
+and what minute does the guard spend asleep the most.
+In the second strategy we must find which guard is most frequently asleep on the same minute.
+
+To answer these question we build a sleep schedule of all guards.
+The schedule is a map where a key is a pair - guard identifier and a minute,
+and the value is number of how many times the guard was asleep in that minute.
+Additionally we will keep track of total number of minutes when guard was asleep.
+It's not necessery and can be computed out of the remaing data by simply summing up all the minute records.
+
+Having such sleep schedule makes finding the numbers needed for solution very easy.
+Let's focuse then on building the sleep schedule.
+We need to traverse the log chronologically, so it must be sorted first by a date.
+Going through records we mst keep track of which guard is currently on shift,
+whether he is asleep or awake, and since when is he asleep.
+The information is set and used when processing different records.
+
+- On "begins shift" put the guide identifier and set to awake.
+- On "falls asleep" set to asleep and set the current minute in the log.
+- On "wakes up" update the sleep schedule as we have the guard id and the minute he falls asleep and set to awake.
+
+The only remaining feature is parsing the log records to extract all required information.
