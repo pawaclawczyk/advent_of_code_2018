@@ -12,4 +12,8 @@ defmodule AoC.Day5.SolutionTest do
     assert 1 === length_after_reaction(["zabcdeEDCBA"])
     assert 1 === length_after_reaction(["abcdeEDCBAZ"])
   end
+
+  test "shortest polymer" do
+    assert 4 === find_shortest(["dabAcCaCBAcCcaDA"])
+  end
 end
