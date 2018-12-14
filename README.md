@@ -124,3 +124,40 @@ The information is set and used when processing different records.
 - On "wakes up" update the sleep schedule as we have the guard id and the minute he falls asleep and set to awake.
 
 The only remaining feature is parsing the log records to extract all required information.
+
+## Day 5: Alchemical Reduction
+
+[Puzzle description](https://adventofcode.com/2018/day/5)
+
+[Input data](data/5/input)
+
+[Solution code](lib/aoc/day_5/solution.ex)
+
+Today's algorithm operates on long string, in our case it will be list of characters.
+We can do two operations:
+ - continue processing without change,
+ - delete units with the same type but different polarization.
+The solution is to walk over the list from left to right by two elements.
+
+```
+(ab)cde
+a(bc)de
+ab(cd)e
+abc(de)
+...
+```
+
+In case when removing currently check pair, as a next pair we must take a previous unit and the next unit.
+
+```
+(ab)cCde
+a(bc)Cde
+ab(cC)de
+a(bd)e
+ab(de)
+```
+
+Once we iterate over the list we have the shortest polymer.
+
+In second part we must find a unit type that prevents the polymer from collapsing more.
+To solve this we will iterate over list of characters from A to Z and compute the shortest polymer after removing that unit.
