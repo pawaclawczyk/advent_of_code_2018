@@ -161,3 +161,47 @@ Once we iterate over the list we have the shortest polymer.
 
 In second part we must find a unit type that prevents the polymer from collapsing more.
 To solve this we will iterate over list of characters from A to Z and compute the shortest polymer after removing that unit.
+
+## Day 6: Chronal Coordinates
+
+[Puzzle description](https://adventofcode.com/2018/day/5)
+
+[Input data](data/6/input)
+
+[Solution code](lib/aoc/day_6/solution.ex)
+
+As an input we have coordinate list. Each coordinate represents a location.
+In first part we're looking for a location with the biggest area.
+Let's define what do we consider as an area of a location.
+In the beginning we must distinguish between given locations and any other location which we'll refer to as point.
+Every point is in a certain distance from a location.
+The distance function is given by taxicab metric.
+An area of a location are all points closest to it.
+In case when at least two locations are in the same minimal distance from a point we consider that point as not belonging to any of the locations.
+As we already know what do we consider an area, let's look at the space.
+It is infinite.
+
+We need to define some boundries for our algorithm.
+Find locations most to the left, right, top and bottom.
+Use the horizontal coordinate from the left and right location, and the vertical coordinate from the top and bottom location.
+Using this coordinates we define a rectangle area including all locations.
+
+Iterate the area and compute distance to each location for every point.
+Choose the closest location as a point owner.
+At this point we have all points assigned to a location area or marked as common.
+
+Before we look for the maximal area we must reject some of the locations and their areas.
+If location area can expand infinitelly it has to be rejected.
+The first guess which locations can expand infinitelly is the locations on the edge of our rectangle area.
+It is true, but these are *not the only* locations that can expand infinitelly.
+We do a simple test which locations have such property by iterating by every outter point with distance 1 from the edge of the rectangle area defined by the locations.
+
+From all collected areas we remove ones belonging to infinitelly expanding locations.
+Search for the maximum and that's our answer.
+
+In the second part we are looking for each point such that
+its sum of distances to every location is below certain value.
+We reuse the rectangle area defined in the first part to iterate over.
+For each point compute distance to every location and sum them.
+At the end reject points that have the sum higher or equal to the maximal value,
+then count remaing points.
