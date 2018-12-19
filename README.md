@@ -164,7 +164,7 @@ To solve this we will iterate over list of characters from A to Z and compute th
 
 ## Day 6: Chronal Coordinates
 
-[Puzzle description](https://adventofcode.com/2018/day/5)
+[Puzzle description](https://adventofcode.com/2018/day/6)
 
 [Input data](data/6/input)
 
@@ -205,3 +205,30 @@ We reuse the rectangle area defined in the first part to iterate over.
 For each point compute distance to every location and sum them.
 At the end reject points that have the sum higher or equal to the maximal value,
 then count remaing points.
+
+## Day 7: The Sum of Its Parts
+
+[Puzzle description](https://adventofcode.com/2018/day/7)
+
+[Input data](data/7/input)
+
+[Solution code](lib/aoc/day_7/solution.ex)
+
+As an input we receives list of dependencies between steps that allows us to build a sleigh.
+In first part we must order the steps.
+The ordering is defined by the dependencies or by lexical order when two steps can be applied at the same moment.
+
+To solve this we will keep track of two lists - steps waiting to order and steps alredy ordered.
+The solution is to find in waiting steps a step that can be immediately performed.
+It means it has no dependencies or all its dependencies are completed (are on the list of ordered steps).
+Once we find such step we move it to ordered steps.
+Next the process is repeated with new lists.
+The process is ended when no more items is left on waiting list.
+In order to apply ordering by lexical scope the list of steps is sorted before running the solution.
+
+In the second part we must determine how long will be these step executed,
+holding the dependencies, by five workers.
+As I'm not familiar with any algorithms that could help me to solve it I implemented a simulation.
+In each time unit we simulate doing the work by workers by decreasing the remaining time.
+And plan the work for next time unit.
+The simulation ends when there's no more waiting steps and all workers become idle.
