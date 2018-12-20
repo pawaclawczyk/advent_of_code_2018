@@ -4,9 +4,13 @@ defmodule AoC.Reader do
     |> Enum.map(&String.to_integer/1)
   end
 
-  def as_strings(path) do
+  def as_string(path) do
     path
     |> File.read!()
+  end
+
+  def as_strings(path) do
+    as_string(path)
     |> String.split("\n")
     |> Enum.map(&String.trim/1)
     |> skip_empty_lines()

@@ -232,3 +232,21 @@ As I'm not familiar with any algorithms that could help me to solve it I impleme
 In each time unit we simulate doing the work by workers by decreasing the remaining time.
 And plan the work for next time unit.
 The simulation ends when there's no more waiting steps and all workers become idle.
+
+## Day 8: Memory Manouver
+
+[Puzzle description](https://adventofcode.com/2018/day/8)
+
+[Input data](data/8/input)
+
+[Solution code](lib/aoc/day_8/solution.ex)
+
+In the 8th challange we have an encoded tree structure.
+Every node can have 0 or more integer values (metadata).
+
+In first part we produce a sum of every metadata.
+We can easly achieve it using a recursive list processing.
+In practice we implement tree traversal on the goven tree encoding.
+
+In second part, due to more complex computation rules, we build a simple tree structure.
+And once again we use recursive tree traversal to compute the tree value.
